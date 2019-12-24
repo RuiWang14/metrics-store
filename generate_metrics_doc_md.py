@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[59]:
+# In[1]:
 
 
 import os
 
 
-# In[60]:
+# In[2]:
 
 
 # exact metrics info from file
@@ -32,7 +32,7 @@ def get_metrics(path):
     return metrics
 
 
-# In[61]:
+# In[3]:
 
 
 base_path = './istio_metrics_example/'
@@ -43,7 +43,7 @@ with open('metrics_doc.md','w') as f:
     
     for p in paths:
 
-        f.write('## %s\n' % p)
+        f.write('### %s\n' % p)
 
         metrics = get_metrics(base_path + p)
 
@@ -54,4 +54,10 @@ with open('metrics_doc.md','w') as f:
             hh = met['HELP'] if 'HELP' in met else ''
             tt = met['TYPE'] if 'TYPE' in met else ''
             f.write('|%s|%s|%s|\n' % (k, hh, tt))
+
+
+# In[ ]:
+
+
+
 

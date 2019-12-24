@@ -1,4 +1,4 @@
-## citadel.txt
+### citadel.metrics
 |name|help|type|
 |---|---|---|
 |citadel_secret_controller_csr_err_count|The number of errors occurred when creating the CSR.|counter|
@@ -62,7 +62,7 @@
 |process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
 |process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
 |process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## envoy.txt
+### envoy.metrics
 |name|help|type|
 |---|---|---|
 |envoy_listener_manager_lds_update_attempt||counter|
@@ -205,7 +205,7 @@
 |envoy_server_parent_connections||gauge|
 |envoy_cluster_upstream_cx_length_ms||histogram|
 |envoy_cluster_upstream_cx_connect_ms||histogram|
-## galley.txt
+### galley.metrics
 |name|help|type|
 |---|---|---|
 |endpoint_no_pod|Endpoints without an associated pod.|gauge|
@@ -274,7 +274,7 @@
 |process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
 |process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
 |process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## mesh.txt
+### mesh.metrics
 |name|help|type|
 |---|---|---|
 |istio_request_bytes|request_bytes|histogram|
@@ -285,7 +285,7 @@
 |istio_tcp_connections_opened_total|tcp_connections_opened_total|counter|
 |istio_tcp_received_bytes_total|tcp_received_bytes_total|counter|
 |istio_tcp_sent_bytes_total|tcp_sent_bytes_total|counter|
-## pilot.txt
+### pilot.metrics
 |name|help|type|
 |---|---|---|
 |endpoint_no_pod|Endpoints without an associated pod.|gauge|
@@ -355,7 +355,7 @@
 |process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
 |process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
 |process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## policy.txt
+### policy.metrics
 |name|help|type|
 |---|---|---|
 |go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
@@ -425,7 +425,7 @@
 |process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
 |process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
 |process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## telemetry.txt
+### telemetry.metrics
 |name|help|type|
 |---|---|---|
 |go_gc_duration_seconds|A summary of the GC invocation durations.|summary|

@@ -1,7 +1,20 @@
 # README
 
+I collect Istio and envoy metrics for searching. In the futrue, maybe I would add more metrics source.
 
-## citadel.txt
+project structure:
+
+    .
+    ├── README.md
+    ├── generate_metrics_doc_md.ipynb # jupyter notebook, used to exact code from istio_metrics_example folder
+    ├── generate_metrics_doc_md.py # python code download from jupyter notebook
+    ├── istio_metrics_example # folder which store the metrics file
+    └── metrics_doc.md # generated metrics doc markdown file
+
+
+## istio
+
+### citadel.metrics
 |name|help|type|
 |---|---|---|
 |citadel_secret_controller_csr_err_count|The number of errors occurred when creating the CSR.|counter|
@@ -65,7 +78,299 @@
 |process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
 |process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
 |process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## envoy.txt
+### galley.metrics
+|name|help|type|
+|---|---|---|
+|endpoint_no_pod|Endpoints without an associated pod.|gauge|
+|galley_mcp_source_clients_total|The number of streams currently connected.|gauge|
+|galley_mcp_source_message_sizes_bytes|Size of messages received from clients.|histogram|
+|galley_mcp_source_recv_failures_total|The number of recv failures in the source.|counter|
+|galley_mcp_source_request_acks_total|The number of request acks received by the source.|counter|
+|galley_runtime_processor_event_span_duration_milliseconds|The duration between each incoming event|histogram|
+|galley_runtime_processor_events_processed_total|The number of events that have been processed|counter|
+|galley_runtime_processor_snapshot_events_total|The number of events per snapshot|histogram|
+|galley_runtime_processor_snapshot_lifetime_duration_milliseconds|The duration of each snapshot|histogram|
+|galley_runtime_processor_snapshots_published_total|The number of snapshots that have been published|counter|
+|galley_runtime_state_type_instances_total|The number of type instances per type URL|gauge|
+|galley_runtime_strategy_on_change_total|The number of times the strategy's onChange has been called|counter|
+|galley_runtime_strategy_timer_max_time_reached_total|The number of times the max time has been reached|counter|
+|galley_runtime_strategy_timer_quiesce_reached_total|The number of times a quiesce has been reached|counter|
+|galley_runtime_strategy_timer_resets_total|The number of times the timer has been reset|counter|
+|galley_source_kube_dynamic_converter_success_total|The number of times a dynamic kubernetes source successfully converted a resource|counter|
+|galley_source_kube_event_success_total|The number of times a kubernetes source successfully handled an event|counter|
+|galley_validation_cert_key_updates|Galley validation webhook certificate updates|counter|
+|galley_validation_config_load|k8s webhook configuration (re)loads|counter|
+|galley_validation_config_updates|k8s webhook configuration updates|counter|
+|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
+|go_goroutines|Number of goroutines that currently exist.|gauge|
+|go_info|Information about the Go environment.|gauge|
+|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
+|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
+|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
+|go_memstats_frees_total|Total number of frees.|counter|
+|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
+|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
+|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
+|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
+|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
+|go_memstats_heap_objects|Number of allocated objects.|gauge|
+|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
+|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
+|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
+|go_memstats_lookups_total|Total number of pointer lookups.|counter|
+|go_memstats_mallocs_total|Total number of mallocs.|counter|
+|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
+|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
+|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
+|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
+|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
+|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
+|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
+|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
+|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
+|go_threads|Number of OS threads created.|gauge|
+|istio_build|Istio component build info|gauge|
+|pilot_conflict_inbound_listener|Number of conflicting inbound listeners.|gauge|
+|pilot_conflict_outbound_listener_http_over_current_tcp|Number of conflicting wildcard http listeners with current wildcard tcp listener.|gauge|
+|pilot_conflict_outbound_listener_tcp_over_current_http|Number of conflicting wildcard tcp listeners with current wildcard http listener.|gauge|
+|pilot_conflict_outbound_listener_tcp_over_current_tcp|Number of conflicting tcp listeners with current tcp listener.|gauge|
+|pilot_destrule_subsets|Duplicate subsets across destination rules for same host|gauge|
+|pilot_duplicate_envoy_clusters|Duplicate envoy clusters caused by service entries with same hostname|gauge|
+|pilot_eds_no_instances|Number of clusters without instances.|gauge|
+|pilot_endpoint_not_ready|Endpoint found in unready state.|gauge|
+|pilot_no_ip|Pods not found in the endpoint table, possibly invalid.|gauge|
+|pilot_vservice_dup_domain|Virtual services with dup domains.|gauge|
+|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
+|process_max_fds|Maximum number of open file descriptors.|gauge|
+|process_open_fds|Number of open file descriptors.|gauge|
+|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
+|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
+|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
+|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
+### mesh.metrics
+|name|help|type|
+|---|---|---|
+|istio_request_bytes|request_bytes|histogram|
+|istio_request_duration_seconds|request_duration_seconds|histogram|
+|istio_requests_total|requests_total|counter|
+|istio_response_bytes|response_bytes|histogram|
+|istio_tcp_connections_closed_total|tcp_connections_closed_total|counter|
+|istio_tcp_connections_opened_total|tcp_connections_opened_total|counter|
+|istio_tcp_received_bytes_total|tcp_received_bytes_total|counter|
+|istio_tcp_sent_bytes_total|tcp_sent_bytes_total|counter|
+### pilot.metrics
+|name|help|type|
+|---|---|---|
+|endpoint_no_pod|Endpoints without an associated pod.|gauge|
+|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
+|go_goroutines|Number of goroutines that currently exist.|gauge|
+|go_info|Information about the Go environment.|gauge|
+|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
+|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
+|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
+|go_memstats_frees_total|Total number of frees.|counter|
+|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
+|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
+|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
+|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
+|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
+|go_memstats_heap_objects|Number of allocated objects.|gauge|
+|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
+|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
+|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
+|go_memstats_lookups_total|Total number of pointer lookups.|counter|
+|go_memstats_mallocs_total|Total number of mallocs.|counter|
+|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
+|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
+|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
+|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
+|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
+|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
+|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
+|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
+|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
+|go_threads|Number of OS threads created.|gauge|
+|istio_build|Istio component build info|gauge|
+|pilot_conflict_inbound_listener|Number of conflicting inbound listeners.|gauge|
+|pilot_conflict_outbound_listener_http_over_current_tcp|Number of conflicting wildcard http listeners with current wildcard tcp listener.|gauge|
+|pilot_conflict_outbound_listener_tcp_over_current_http|Number of conflicting wildcard tcp listeners with current wildcard http listener.|gauge|
+|pilot_conflict_outbound_listener_tcp_over_current_tcp|Number of conflicting tcp listeners with current tcp listener.|gauge|
+|pilot_destrule_subsets|Duplicate subsets across destination rules for same host|gauge|
+|pilot_duplicate_envoy_clusters|Duplicate envoy clusters caused by service entries with same hostname|gauge|
+|pilot_eds_no_instances|Number of clusters without instances.|gauge|
+|pilot_endpoint_not_ready|Endpoint found in unready state.|gauge|
+|pilot_info|Pilot version and build information.|gauge|
+|pilot_invalid_out_listeners|Number of invalid outbound listeners.|gauge|
+|pilot_k8s_reg_events|Events from k8s registry.|counter|
+|pilot_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
+|pilot_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
+|pilot_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
+|pilot_no_ip|Pods not found in the endpoint table, possibly invalid.|gauge|
+|pilot_proxy_convergence_time|Delay between config change and all proxies converging.|histogram|
+|pilot_rds_expired_nonce|Total number of RDS messages with an expired nonce.|counter|
+|pilot_services|Total services known to pilot.|gauge|
+|pilot_total_xds_internal_errors|Total number of internal XDS errors in pilot (check logs).|counter|
+|pilot_total_xds_rejects|Total number of XDS responses from pilot rejected by proxy.|counter|
+|pilot_virt_services|Total virtual services known to pilot.|gauge|
+|pilot_vservice_dup_domain|Virtual services with dup domains.|gauge|
+|pilot_xds|Number of endpoints connected to this pilot using XDS.|gauge|
+|pilot_xds_eds_instances|Instances for each cluster, as of last push. Zero instances is an error.|gauge|
+|pilot_xds_push_context_errors|Number of errors (timeouts) initiating push context.|counter|
+|pilot_xds_push_errors|Number of errors (timeouts) pushing to sidecars.|counter|
+|pilot_xds_push_timeout|Pilot push timeout, will retry.|counter|
+|pilot_xds_push_timeout_failures|Pilot push timeout failures after repeated attempts.|counter|
+|pilot_xds_pushes|Pilot build and send errors for lds, rds, cds and eds.|counter|
+|pilot_xds_write_timeout|Pilot XDS response write timeouts.|counter|
+|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
+|process_max_fds|Maximum number of open file descriptors.|gauge|
+|process_open_fds|Number of open file descriptors.|gauge|
+|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
+|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
+|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
+|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
+### policy.metrics
+|name|help|type|
+|---|---|---|
+|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
+|go_goroutines|Number of goroutines that currently exist.|gauge|
+|go_info|Information about the Go environment.|gauge|
+|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
+|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
+|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
+|go_memstats_frees_total|Total number of frees.|counter|
+|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
+|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
+|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
+|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
+|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
+|go_memstats_heap_objects|Number of allocated objects.|gauge|
+|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
+|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
+|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
+|go_memstats_lookups_total|Total number of pointer lookups.|counter|
+|go_memstats_mallocs_total|Total number of mallocs.|counter|
+|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
+|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
+|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
+|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
+|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
+|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
+|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
+|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
+|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
+|go_threads|Number of OS threads created.|gauge|
+|grpc_io_server_completed_rpcs|Count of RPCs by method and status.|counter|
+|grpc_io_server_received_bytes_per_rpc|Distribution of received bytes per RPC, by method.|histogram|
+|grpc_io_server_sent_bytes_per_rpc|Distribution of total sent bytes per RPC, by method.|histogram|
+|grpc_io_server_server_latency|Distribution of server latency in milliseconds, by method.|histogram|
+|istio_build|Istio component build info|gauge|
+|mixer_config_adapter_info_config_errors_total|The number of errors encountered during processing of the adapter info configuration.|gauge|
+|mixer_config_adapter_info_configs_total|The number of known adapters in the current config.|gauge|
+|mixer_config_attributes_total|The number of known attributes in the current config.|gauge|
+|mixer_config_handler_configs_total|The number of known handlers in the current config.|gauge|
+|mixer_config_handler_validation_error_total|The number of errors encountered because handler validation returned error.|gauge|
+|mixer_config_instance_config_errors_total|The number of errors encountered during processing of the instance configuration.|gauge|
+|mixer_config_instance_configs_total|The number of known instances in the current config.|gauge|
+|mixer_config_rule_config_errors_total|The number of errors encountered during processing of the rule configuration.|gauge|
+|mixer_config_rule_config_match_error_total|The number of rule conditions that was not parseable.|gauge|
+|mixer_config_rule_configs_total|The number of known rules in the current config.|gauge|
+|mixer_config_template_config_errors_total|The number of errors encountered during processing of the template configuration.|gauge|
+|mixer_config_template_configs_total|The number of known templates in the current config.|gauge|
+|mixer_config_unsatisfied_action_handler_total|The number of actions that failed due to handlers being unavailable.|gauge|
+|mixer_dispatcher_destinations_per_request|Number of handlers dispatched per request by Mixer|histogram|
+|mixer_dispatcher_destinations_per_variety_total|Number of Mixer adapter destinations by template variety type|gauge|
+|mixer_dispatcher_instances_per_request|Number of instances created per request by Mixer|histogram|
+|mixer_handler_closed_handlers_total|The number of handlers that were closed during config transition.|gauge|
+|mixer_handler_daemons_total|The current number of active daemon routines in a given adapter environment.|gauge|
+|mixer_handler_handler_build_failures_total|The number of handlers that failed creation during config transition.|gauge|
+|mixer_handler_handler_close_failures_total|The number of errors encountered while closing handlers during config transition.|gauge|
+|mixer_handler_new_handlers_total|The number of handlers that were newly created during config transition.|gauge|
+|mixer_handler_reused_handlers_total|The number of handlers that were re-used during config transition.|gauge|
+|mixer_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
+|mixer_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
+|mixer_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
+|mixer_runtime_dispatch_duration_seconds|Duration in seconds for adapter dispatches handled by Mixer.|histogram|
+|mixer_runtime_dispatches_total|Total number of adapter dispatches handled by Mixer.|counter|
+|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
+|process_max_fds|Maximum number of open file descriptors.|gauge|
+|process_open_fds|Number of open file descriptors.|gauge|
+|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
+|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
+|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
+|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
+### telemetry.metrics
+|name|help|type|
+|---|---|---|
+|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
+|go_goroutines|Number of goroutines that currently exist.|gauge|
+|go_info|Information about the Go environment.|gauge|
+|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
+|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
+|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
+|go_memstats_frees_total|Total number of frees.|counter|
+|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
+|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
+|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
+|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
+|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
+|go_memstats_heap_objects|Number of allocated objects.|gauge|
+|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
+|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
+|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
+|go_memstats_lookups_total|Total number of pointer lookups.|counter|
+|go_memstats_mallocs_total|Total number of mallocs.|counter|
+|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
+|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
+|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
+|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
+|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
+|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
+|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
+|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
+|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
+|go_threads|Number of OS threads created.|gauge|
+|grpc_io_server_completed_rpcs|Count of RPCs by method and status.|counter|
+|grpc_io_server_received_bytes_per_rpc|Distribution of received bytes per RPC, by method.|histogram|
+|grpc_io_server_sent_bytes_per_rpc|Distribution of total sent bytes per RPC, by method.|histogram|
+|grpc_io_server_server_latency|Distribution of server latency in milliseconds, by method.|histogram|
+|istio_build|Istio component build info|gauge|
+|mixer_config_adapter_info_config_errors_total|The number of errors encountered during processing of the adapter info configuration.|gauge|
+|mixer_config_adapter_info_configs_total|The number of known adapters in the current config.|gauge|
+|mixer_config_attributes_total|The number of known attributes in the current config.|gauge|
+|mixer_config_handler_configs_total|The number of known handlers in the current config.|gauge|
+|mixer_config_handler_validation_error_total|The number of errors encountered because handler validation returned error.|gauge|
+|mixer_config_instance_config_errors_total|The number of errors encountered during processing of the instance configuration.|gauge|
+|mixer_config_instance_configs_total|The number of known instances in the current config.|gauge|
+|mixer_config_rule_config_errors_total|The number of errors encountered during processing of the rule configuration.|gauge|
+|mixer_config_rule_config_match_error_total|The number of rule conditions that was not parseable.|gauge|
+|mixer_config_rule_configs_total|The number of known rules in the current config.|gauge|
+|mixer_config_template_config_errors_total|The number of errors encountered during processing of the template configuration.|gauge|
+|mixer_config_template_configs_total|The number of known templates in the current config.|gauge|
+|mixer_config_unsatisfied_action_handler_total|The number of actions that failed due to handlers being unavailable.|gauge|
+|mixer_dispatcher_destinations_per_request|Number of handlers dispatched per request by Mixer|histogram|
+|mixer_dispatcher_destinations_per_variety_total|Number of Mixer adapter destinations by template variety type|gauge|
+|mixer_dispatcher_instances_per_request|Number of instances created per request by Mixer|histogram|
+|mixer_handler_closed_handlers_total|The number of handlers that were closed during config transition.|gauge|
+|mixer_handler_daemons_total|The current number of active daemon routines in a given adapter environment.|gauge|
+|mixer_handler_handler_build_failures_total|The number of handlers that failed creation during config transition.|gauge|
+|mixer_handler_handler_close_failures_total|The number of errors encountered while closing handlers during config transition.|gauge|
+|mixer_handler_new_handlers_total|The number of handlers that were newly created during config transition.|gauge|
+|mixer_handler_reused_handlers_total|The number of handlers that were re-used during config transition.|gauge|
+|mixer_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
+|mixer_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
+|mixer_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
+|mixer_runtime_dispatch_duration_seconds|Duration in seconds for adapter dispatches handled by Mixer.|histogram|
+|mixer_runtime_dispatches_total|Total number of adapter dispatches handled by Mixer.|counter|
+|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
+|process_max_fds|Maximum number of open file descriptors.|gauge|
+|process_open_fds|Number of open file descriptors.|gauge|
+|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
+|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
+|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
+|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
+
+## Envoy
+### envoy.metrics
 |name|help|type|
 |---|---|---|
 |envoy_listener_manager_lds_update_attempt||counter|
@@ -208,293 +513,3 @@
 |envoy_server_parent_connections||gauge|
 |envoy_cluster_upstream_cx_length_ms||histogram|
 |envoy_cluster_upstream_cx_connect_ms||histogram|
-## galley.txt
-|name|help|type|
-|---|---|---|
-|endpoint_no_pod|Endpoints without an associated pod.|gauge|
-|galley_mcp_source_clients_total|The number of streams currently connected.|gauge|
-|galley_mcp_source_message_sizes_bytes|Size of messages received from clients.|histogram|
-|galley_mcp_source_recv_failures_total|The number of recv failures in the source.|counter|
-|galley_mcp_source_request_acks_total|The number of request acks received by the source.|counter|
-|galley_runtime_processor_event_span_duration_milliseconds|The duration between each incoming event|histogram|
-|galley_runtime_processor_events_processed_total|The number of events that have been processed|counter|
-|galley_runtime_processor_snapshot_events_total|The number of events per snapshot|histogram|
-|galley_runtime_processor_snapshot_lifetime_duration_milliseconds|The duration of each snapshot|histogram|
-|galley_runtime_processor_snapshots_published_total|The number of snapshots that have been published|counter|
-|galley_runtime_state_type_instances_total|The number of type instances per type URL|gauge|
-|galley_runtime_strategy_on_change_total|The number of times the strategy's onChange has been called|counter|
-|galley_runtime_strategy_timer_max_time_reached_total|The number of times the max time has been reached|counter|
-|galley_runtime_strategy_timer_quiesce_reached_total|The number of times a quiesce has been reached|counter|
-|galley_runtime_strategy_timer_resets_total|The number of times the timer has been reset|counter|
-|galley_source_kube_dynamic_converter_success_total|The number of times a dynamic kubernetes source successfully converted a resource|counter|
-|galley_source_kube_event_success_total|The number of times a kubernetes source successfully handled an event|counter|
-|galley_validation_cert_key_updates|Galley validation webhook certificate updates|counter|
-|galley_validation_config_load|k8s webhook configuration (re)loads|counter|
-|galley_validation_config_updates|k8s webhook configuration updates|counter|
-|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
-|go_goroutines|Number of goroutines that currently exist.|gauge|
-|go_info|Information about the Go environment.|gauge|
-|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
-|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
-|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
-|go_memstats_frees_total|Total number of frees.|counter|
-|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
-|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
-|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
-|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
-|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
-|go_memstats_heap_objects|Number of allocated objects.|gauge|
-|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
-|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
-|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
-|go_memstats_lookups_total|Total number of pointer lookups.|counter|
-|go_memstats_mallocs_total|Total number of mallocs.|counter|
-|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
-|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
-|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
-|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
-|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
-|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
-|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
-|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
-|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
-|go_threads|Number of OS threads created.|gauge|
-|istio_build|Istio component build info|gauge|
-|pilot_conflict_inbound_listener|Number of conflicting inbound listeners.|gauge|
-|pilot_conflict_outbound_listener_http_over_current_tcp|Number of conflicting wildcard http listeners with current wildcard tcp listener.|gauge|
-|pilot_conflict_outbound_listener_tcp_over_current_http|Number of conflicting wildcard tcp listeners with current wildcard http listener.|gauge|
-|pilot_conflict_outbound_listener_tcp_over_current_tcp|Number of conflicting tcp listeners with current tcp listener.|gauge|
-|pilot_destrule_subsets|Duplicate subsets across destination rules for same host|gauge|
-|pilot_duplicate_envoy_clusters|Duplicate envoy clusters caused by service entries with same hostname|gauge|
-|pilot_eds_no_instances|Number of clusters without instances.|gauge|
-|pilot_endpoint_not_ready|Endpoint found in unready state.|gauge|
-|pilot_no_ip|Pods not found in the endpoint table, possibly invalid.|gauge|
-|pilot_vservice_dup_domain|Virtual services with dup domains.|gauge|
-|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
-|process_max_fds|Maximum number of open file descriptors.|gauge|
-|process_open_fds|Number of open file descriptors.|gauge|
-|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
-|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
-|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
-|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## mesh.txt
-|name|help|type|
-|---|---|---|
-|istio_request_bytes|request_bytes|histogram|
-|istio_request_duration_seconds|request_duration_seconds|histogram|
-|istio_requests_total|requests_total|counter|
-|istio_response_bytes|response_bytes|histogram|
-|istio_tcp_connections_closed_total|tcp_connections_closed_total|counter|
-|istio_tcp_connections_opened_total|tcp_connections_opened_total|counter|
-|istio_tcp_received_bytes_total|tcp_received_bytes_total|counter|
-|istio_tcp_sent_bytes_total|tcp_sent_bytes_total|counter|
-## pilot.txt
-|name|help|type|
-|---|---|---|
-|endpoint_no_pod|Endpoints without an associated pod.|gauge|
-|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
-|go_goroutines|Number of goroutines that currently exist.|gauge|
-|go_info|Information about the Go environment.|gauge|
-|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
-|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
-|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
-|go_memstats_frees_total|Total number of frees.|counter|
-|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
-|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
-|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
-|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
-|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
-|go_memstats_heap_objects|Number of allocated objects.|gauge|
-|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
-|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
-|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
-|go_memstats_lookups_total|Total number of pointer lookups.|counter|
-|go_memstats_mallocs_total|Total number of mallocs.|counter|
-|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
-|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
-|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
-|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
-|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
-|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
-|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
-|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
-|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
-|go_threads|Number of OS threads created.|gauge|
-|istio_build|Istio component build info|gauge|
-|pilot_conflict_inbound_listener|Number of conflicting inbound listeners.|gauge|
-|pilot_conflict_outbound_listener_http_over_current_tcp|Number of conflicting wildcard http listeners with current wildcard tcp listener.|gauge|
-|pilot_conflict_outbound_listener_tcp_over_current_http|Number of conflicting wildcard tcp listeners with current wildcard http listener.|gauge|
-|pilot_conflict_outbound_listener_tcp_over_current_tcp|Number of conflicting tcp listeners with current tcp listener.|gauge|
-|pilot_destrule_subsets|Duplicate subsets across destination rules for same host|gauge|
-|pilot_duplicate_envoy_clusters|Duplicate envoy clusters caused by service entries with same hostname|gauge|
-|pilot_eds_no_instances|Number of clusters without instances.|gauge|
-|pilot_endpoint_not_ready|Endpoint found in unready state.|gauge|
-|pilot_info|Pilot version and build information.|gauge|
-|pilot_invalid_out_listeners|Number of invalid outbound listeners.|gauge|
-|pilot_k8s_reg_events|Events from k8s registry.|counter|
-|pilot_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
-|pilot_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
-|pilot_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
-|pilot_no_ip|Pods not found in the endpoint table, possibly invalid.|gauge|
-|pilot_proxy_convergence_time|Delay between config change and all proxies converging.|histogram|
-|pilot_rds_expired_nonce|Total number of RDS messages with an expired nonce.|counter|
-|pilot_services|Total services known to pilot.|gauge|
-|pilot_total_xds_internal_errors|Total number of internal XDS errors in pilot (check logs).|counter|
-|pilot_total_xds_rejects|Total number of XDS responses from pilot rejected by proxy.|counter|
-|pilot_virt_services|Total virtual services known to pilot.|gauge|
-|pilot_vservice_dup_domain|Virtual services with dup domains.|gauge|
-|pilot_xds|Number of endpoints connected to this pilot using XDS.|gauge|
-|pilot_xds_eds_instances|Instances for each cluster, as of last push. Zero instances is an error.|gauge|
-|pilot_xds_push_context_errors|Number of errors (timeouts) initiating push context.|counter|
-|pilot_xds_push_errors|Number of errors (timeouts) pushing to sidecars.|counter|
-|pilot_xds_push_timeout|Pilot push timeout, will retry.|counter|
-|pilot_xds_push_timeout_failures|Pilot push timeout failures after repeated attempts.|counter|
-|pilot_xds_pushes|Pilot build and send errors for lds, rds, cds and eds.|counter|
-|pilot_xds_write_timeout|Pilot XDS response write timeouts.|counter|
-|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
-|process_max_fds|Maximum number of open file descriptors.|gauge|
-|process_open_fds|Number of open file descriptors.|gauge|
-|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
-|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
-|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
-|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## policy.txt
-|name|help|type|
-|---|---|---|
-|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
-|go_goroutines|Number of goroutines that currently exist.|gauge|
-|go_info|Information about the Go environment.|gauge|
-|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
-|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
-|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
-|go_memstats_frees_total|Total number of frees.|counter|
-|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
-|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
-|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
-|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
-|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
-|go_memstats_heap_objects|Number of allocated objects.|gauge|
-|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
-|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
-|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
-|go_memstats_lookups_total|Total number of pointer lookups.|counter|
-|go_memstats_mallocs_total|Total number of mallocs.|counter|
-|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
-|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
-|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
-|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
-|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
-|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
-|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
-|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
-|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
-|go_threads|Number of OS threads created.|gauge|
-|grpc_io_server_completed_rpcs|Count of RPCs by method and status.|counter|
-|grpc_io_server_received_bytes_per_rpc|Distribution of received bytes per RPC, by method.|histogram|
-|grpc_io_server_sent_bytes_per_rpc|Distribution of total sent bytes per RPC, by method.|histogram|
-|grpc_io_server_server_latency|Distribution of server latency in milliseconds, by method.|histogram|
-|istio_build|Istio component build info|gauge|
-|mixer_config_adapter_info_config_errors_total|The number of errors encountered during processing of the adapter info configuration.|gauge|
-|mixer_config_adapter_info_configs_total|The number of known adapters in the current config.|gauge|
-|mixer_config_attributes_total|The number of known attributes in the current config.|gauge|
-|mixer_config_handler_configs_total|The number of known handlers in the current config.|gauge|
-|mixer_config_handler_validation_error_total|The number of errors encountered because handler validation returned error.|gauge|
-|mixer_config_instance_config_errors_total|The number of errors encountered during processing of the instance configuration.|gauge|
-|mixer_config_instance_configs_total|The number of known instances in the current config.|gauge|
-|mixer_config_rule_config_errors_total|The number of errors encountered during processing of the rule configuration.|gauge|
-|mixer_config_rule_config_match_error_total|The number of rule conditions that was not parseable.|gauge|
-|mixer_config_rule_configs_total|The number of known rules in the current config.|gauge|
-|mixer_config_template_config_errors_total|The number of errors encountered during processing of the template configuration.|gauge|
-|mixer_config_template_configs_total|The number of known templates in the current config.|gauge|
-|mixer_config_unsatisfied_action_handler_total|The number of actions that failed due to handlers being unavailable.|gauge|
-|mixer_dispatcher_destinations_per_request|Number of handlers dispatched per request by Mixer|histogram|
-|mixer_dispatcher_destinations_per_variety_total|Number of Mixer adapter destinations by template variety type|gauge|
-|mixer_dispatcher_instances_per_request|Number of instances created per request by Mixer|histogram|
-|mixer_handler_closed_handlers_total|The number of handlers that were closed during config transition.|gauge|
-|mixer_handler_daemons_total|The current number of active daemon routines in a given adapter environment.|gauge|
-|mixer_handler_handler_build_failures_total|The number of handlers that failed creation during config transition.|gauge|
-|mixer_handler_handler_close_failures_total|The number of errors encountered while closing handlers during config transition.|gauge|
-|mixer_handler_new_handlers_total|The number of handlers that were newly created during config transition.|gauge|
-|mixer_handler_reused_handlers_total|The number of handlers that were re-used during config transition.|gauge|
-|mixer_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
-|mixer_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
-|mixer_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
-|mixer_runtime_dispatch_duration_seconds|Duration in seconds for adapter dispatches handled by Mixer.|histogram|
-|mixer_runtime_dispatches_total|Total number of adapter dispatches handled by Mixer.|counter|
-|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
-|process_max_fds|Maximum number of open file descriptors.|gauge|
-|process_open_fds|Number of open file descriptors.|gauge|
-|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
-|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
-|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
-|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
-## telemetry.txt
-|name|help|type|
-|---|---|---|
-|go_gc_duration_seconds|A summary of the GC invocation durations.|summary|
-|go_goroutines|Number of goroutines that currently exist.|gauge|
-|go_info|Information about the Go environment.|gauge|
-|go_memstats_alloc_bytes|Number of bytes allocated and still in use.|gauge|
-|go_memstats_alloc_bytes_total|Total number of bytes allocated, even if freed.|counter|
-|go_memstats_buck_hash_sys_bytes|Number of bytes used by the profiling bucket hash table.|gauge|
-|go_memstats_frees_total|Total number of frees.|counter|
-|go_memstats_gc_cpu_fraction|The fraction of this program's available CPU time used by the GC since the program started.|gauge|
-|go_memstats_gc_sys_bytes|Number of bytes used for garbage collection system metadata.|gauge|
-|go_memstats_heap_alloc_bytes|Number of heap bytes allocated and still in use.|gauge|
-|go_memstats_heap_idle_bytes|Number of heap bytes waiting to be used.|gauge|
-|go_memstats_heap_inuse_bytes|Number of heap bytes that are in use.|gauge|
-|go_memstats_heap_objects|Number of allocated objects.|gauge|
-|go_memstats_heap_released_bytes|Number of heap bytes released to OS.|gauge|
-|go_memstats_heap_sys_bytes|Number of heap bytes obtained from system.|gauge|
-|go_memstats_last_gc_time_seconds|Number of seconds since 1970 of last garbage collection.|gauge|
-|go_memstats_lookups_total|Total number of pointer lookups.|counter|
-|go_memstats_mallocs_total|Total number of mallocs.|counter|
-|go_memstats_mcache_inuse_bytes|Number of bytes in use by mcache structures.|gauge|
-|go_memstats_mcache_sys_bytes|Number of bytes used for mcache structures obtained from system.|gauge|
-|go_memstats_mspan_inuse_bytes|Number of bytes in use by mspan structures.|gauge|
-|go_memstats_mspan_sys_bytes|Number of bytes used for mspan structures obtained from system.|gauge|
-|go_memstats_next_gc_bytes|Number of heap bytes when next garbage collection will take place.|gauge|
-|go_memstats_other_sys_bytes|Number of bytes used for other system allocations.|gauge|
-|go_memstats_stack_inuse_bytes|Number of bytes in use by the stack allocator.|gauge|
-|go_memstats_stack_sys_bytes|Number of bytes obtained from system for stack allocator.|gauge|
-|go_memstats_sys_bytes|Number of bytes obtained from system.|gauge|
-|go_threads|Number of OS threads created.|gauge|
-|grpc_io_server_completed_rpcs|Count of RPCs by method and status.|counter|
-|grpc_io_server_received_bytes_per_rpc|Distribution of received bytes per RPC, by method.|histogram|
-|grpc_io_server_sent_bytes_per_rpc|Distribution of total sent bytes per RPC, by method.|histogram|
-|grpc_io_server_server_latency|Distribution of server latency in milliseconds, by method.|histogram|
-|istio_build|Istio component build info|gauge|
-|mixer_config_adapter_info_config_errors_total|The number of errors encountered during processing of the adapter info configuration.|gauge|
-|mixer_config_adapter_info_configs_total|The number of known adapters in the current config.|gauge|
-|mixer_config_attributes_total|The number of known attributes in the current config.|gauge|
-|mixer_config_handler_configs_total|The number of known handlers in the current config.|gauge|
-|mixer_config_handler_validation_error_total|The number of errors encountered because handler validation returned error.|gauge|
-|mixer_config_instance_config_errors_total|The number of errors encountered during processing of the instance configuration.|gauge|
-|mixer_config_instance_configs_total|The number of known instances in the current config.|gauge|
-|mixer_config_rule_config_errors_total|The number of errors encountered during processing of the rule configuration.|gauge|
-|mixer_config_rule_config_match_error_total|The number of rule conditions that was not parseable.|gauge|
-|mixer_config_rule_configs_total|The number of known rules in the current config.|gauge|
-|mixer_config_template_config_errors_total|The number of errors encountered during processing of the template configuration.|gauge|
-|mixer_config_template_configs_total|The number of known templates in the current config.|gauge|
-|mixer_config_unsatisfied_action_handler_total|The number of actions that failed due to handlers being unavailable.|gauge|
-|mixer_dispatcher_destinations_per_request|Number of handlers dispatched per request by Mixer|histogram|
-|mixer_dispatcher_destinations_per_variety_total|Number of Mixer adapter destinations by template variety type|gauge|
-|mixer_dispatcher_instances_per_request|Number of instances created per request by Mixer|histogram|
-|mixer_handler_closed_handlers_total|The number of handlers that were closed during config transition.|gauge|
-|mixer_handler_daemons_total|The current number of active daemon routines in a given adapter environment.|gauge|
-|mixer_handler_handler_build_failures_total|The number of handlers that failed creation during config transition.|gauge|
-|mixer_handler_handler_close_failures_total|The number of errors encountered while closing handlers during config transition.|gauge|
-|mixer_handler_new_handlers_total|The number of handlers that were newly created during config transition.|gauge|
-|mixer_handler_reused_handlers_total|The number of handlers that were re-used during config transition.|gauge|
-|mixer_mcp_sink_reconnections|The number of times the sink has reconnected.|counter|
-|mixer_mcp_sink_recv_failures_total|The number of recv failures in the source.|counter|
-|mixer_mcp_sink_request_acks_total|The number of request acks received by the source.|counter|
-|mixer_runtime_dispatch_duration_seconds|Duration in seconds for adapter dispatches handled by Mixer.|histogram|
-|mixer_runtime_dispatches_total|Total number of adapter dispatches handled by Mixer.|counter|
-|process_cpu_seconds_total|Total user and system CPU time spent in seconds.|counter|
-|process_max_fds|Maximum number of open file descriptors.|gauge|
-|process_open_fds|Number of open file descriptors.|gauge|
-|process_resident_memory_bytes|Resident memory size in bytes.|gauge|
-|process_start_time_seconds|Start time of the process since unix epoch in seconds.|gauge|
-|process_virtual_memory_bytes|Virtual memory size in bytes.|gauge|
-|process_virtual_memory_max_bytes|Maximum amount of virtual memory available in bytes.|gauge|
